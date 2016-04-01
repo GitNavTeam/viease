@@ -39,7 +39,6 @@ class AccountRepository
     /**
      * store.
      *
-     * @param App\Models\Menu $menu
      * @param array           $input
      */
     public function store($input)

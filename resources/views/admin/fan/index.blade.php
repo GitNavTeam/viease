@@ -21,9 +21,9 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control input-sm" placeholder="用户昵称">
+                                    <input type="text" class="form-control input-sm" id="search-name" placeholder="用户昵称">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default btn-sm" type="button"><i class="ion-ios-search-strong"></i></button>
+                                        <button id="search-by-name-btn" class="btn btn-default btn-sm" type="button"><i class="ion-ios-search-strong"></i></button>
                                     </span>
                                 </div><!-- /input-group -->
                             </div>

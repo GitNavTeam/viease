@@ -42,7 +42,7 @@ class FanRepository
                     if ($request->group_id) {
                         $query->where('group_id', $request->group_id);
                     }
-                })
+                })->where('nickname', 'LIKE', '%'.$request->search_name.'%')
                 ->orderBy($request->sort_by, 'desc')
                 ->paginate($pageSize);
     }

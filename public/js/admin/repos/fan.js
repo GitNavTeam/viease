@@ -20,12 +20,14 @@ define(['jquery', 'util'], function($, Util){
          * @param {[type]}   $sortBy
          * @param {[type]}   $page
          * @param {Function} $callback
+         * @param {Function} $searchName
          */
-        getFans: function ($groupId, $sortBy, $callback, $page) {
+        getFans: function ($groupId, $sortBy, $callback, $page,$searchName) {
             var $request = {
                 group_id: $groupId || 0,
                 sort_by: $sortBy || 'id',
-                page: $page || window.__page + 1 || 1
+                page: $page || window.__page + 1 || 1,
+                search_name:$searchName||''
             };
 
             Util.request('GET', 'fan/lists', $request, $callback);

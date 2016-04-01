@@ -3,9 +3,10 @@
 namespace app\Services;
 
 use Session;
+use App\Models\Account as AccountModel;
 
 /**
- * 公众号服务提.
+ * 公众号服务提供类.
  *
  * @author rongyouyuan <rongyouyuan@163.com>
  */
@@ -66,5 +67,14 @@ class Account
     public function buildAesKey()
     {
         return str_random(43);
+    }
+
+    /**
+     * 获取当前选择的Account.
+     *
+     * @return Account
+     */
+    public function getCurrent(){
+        return AccountModel::where('id',Session::get('account_id'))->first();
     }
 }

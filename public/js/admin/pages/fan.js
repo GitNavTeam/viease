@@ -3,7 +3,7 @@
  *
  * @author overtrue <anzhengchao@gmail.com>
  */
-define(['jquery', 'underscore', 'pager', 'util', 'repos/fan', 'admin/common'], function ($, _, Pager, Util, $fan) {
+define(['jquery', 'underscore', 'pager', 'util','validator', 'repos/fan', 'admin/common'], function ($, _, Pager, Util, Validator,$fan) {
     $(function(){
         var $emptyContentTemplate = _.template($('#no-content-template').html());
         var $fanTemplate    = _.template($('#fan-template').html());
@@ -29,7 +29,7 @@ define(['jquery', 'underscore', 'pager', 'util', 'repos/fan', 'admin/common'], f
             });
 
         // 加载用户列表
-        function loadFans($groupId, $sortBy, $page) {
+        function loadFans($groupId, $sortBy, $page,$searchName) {
             $__sortBy = $sortBy = $sortBy || $__sortBy;
             $__page = $page = $page || $__page;
 
@@ -39,7 +39,7 @@ define(['jquery', 'underscore', 'pager', 'util', 'repos/fan', 'admin/common'], f
                         total: window.last_response.last_page,
                         current: window.last_response.current_page,
                     });
-            }, $page);
+            }, $page,$searchName);
         }
 
         // 加载组列表
@@ -86,6 +86,18 @@ define(['jquery', 'underscore', 'pager', 'util', 'repos/fan', 'admin/common'], f
             $(this).popover($(this).data());
             $('.popover').popover('hide');
             $(this).popover('show');
+        });
+
+        // 按名字搜索
+        $(document).on('click', '#search-by-name-btn', function(){
+            loadFans($__groupId, $__sortBy, $__page,$('#search-name').val());
+        });
+        $('#search-name').bind('keypress',function(event){
+            if(event.keyCode == "13")
+            {
+                loadFans($__groupId, $__sortBy, $__page,$('#search-name').val());
+                return false;
+            }
         });
 
         // 新建分组
